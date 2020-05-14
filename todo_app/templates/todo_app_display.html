@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block additional_head %}
+    <title>Todo Application</title>
+{% endblock %}
+
+{% block title %}Todo Application Display{% endblock %}
+
+{% block menu %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_app_index_page' %}">List page</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/logout/">Logout</a>
+    </li>
+{% endblock %}
+
+{% block additional_body %}
+    <p><h2>Todo Application Display page</h2>
+    <p>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            {% if todo_obj %}
+                <tr><th>Created Timestamp</th><td>{{ todo_obj.created_timestamp }}</td></tr>
+                <tr><th>Title</th><td>{{ todo_obj.title }}</td></tr>
+                <tr><th>Description</th><td>{{ todo_obj.description }}</td></tr>
+                <tr><th>Completed Flag</th><td>{{ todo_obj.completed_flag }}</td></tr>
+                <tr><th>Completed Timestamp</th><td>{% if todo_obj.completed_timestamp %}{{ todo_obj.completed_timestamp }}{% endif %}</td></tr>
+                <p><a href="{% url 'todo_app_update_page' todo_obj.id %}"><button type="button" class="btn btn-primary">Update</button></a>
+                   <a href="{% url 'todo_app_delete_page' todo_obj.id %}"><button type="button" class="btn btn-primary">Delete</button></a>
+                   <a href="{% url 'todo_app_index_page' %}"><button type="button" class="btn btn-primary">Back</button></a>
+                </p>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block additional_head %}
+    <title>Todo Application</title>
+{% endblock %}
+
+{% block title %}Todo Application Update{% endblock %}
+
+{% block menu %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_app_index_page' %}">List page</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/logout/">Logout</a>
+    </li>
+{% endblock %}
+
+{% block additional_body %}
+    <p><h2>Todo Application Update page</h2>
+    <p>
+    <p><a href="{% url 'todo_app_display_page' todo_id %}"><button type="button" class="btn btn-primary">Back</button></a>
+       <a href="{% url 'todo_app_index_page' %}"><button type="button" class="btn btn-primary">Index</button></a>
+    </p>
+    <table class="table">
+        <form action="{% url 'todo_app_update_page' todo_id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <tr><button type="submit" class="btn btn-primary">Submit</button></tr>
+        </form>
+    </table>
+
+{% endblock %}

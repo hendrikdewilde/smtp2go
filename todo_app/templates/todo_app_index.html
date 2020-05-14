@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block additional_head %}
+    <title>Todo Application</title>
+{% endblock %}
+
+{% block title %}Todo Application Index{% endblock %}
+
+{% block menu %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todo_app_index_page' %}">List page</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/logout/">Logout</a>
+    </li>
+{% endblock %}
+
+{% block additional_body %}
+    <p><h2>Todo Application Index page</h2>
+    <p>
+    <p><a href="{% url 'todo_app_add_page' %}"><button type="button" class="btn btn-primary">ADD</button></a>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            {% if todo_list %}
+                <tr>
+                    <th>Todo</th><th>Completed flag</th><th></th>
+                </tr>
+                {% for entries in todo_list %}
+                    <tr>
+                        <td>{{ entries.title }}</td><td>{{ entries.completed_flag }}</td>
+                        <td><a href="{% url 'todo_app_display_page' entries.id %}"><button type="button" class="btn btn-primary">Detail</button></a></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+
+
+{% endblock %}

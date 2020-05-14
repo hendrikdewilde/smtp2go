@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block additional_head %}
+    <title>Login</title>
+{% endblock %}
+
+{% block title %}Todo Application Login{% endblock %}
+
+{% block menu %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'index_page' %}">Home</a>
+    </li>
+{% endblock %}
+
+
+{% block additional_body %}
+<div class="container">
+
+    <h1>Please login</h1>
+      <br>
+      <form action="{% url 'login_page' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+
+{% endblock %}
